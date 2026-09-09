@@ -1,5 +1,5 @@
 function getPageKey() {
-  return document.body.dataset.page ||
+  return document.body.dataset.navPage || document.body.dataset.page ||
     window.location.pathname.split("/").pop().replace(/\.html$/, "") ||
     "index";
 }
@@ -19,13 +19,19 @@ function dropdownItem(href, label, pageKey) {
 function renderHeader() {
   const cfg = window.SITE_CONFIG;
   const page = getPageKey();
+  const kidsActive = page === "kids" || page.startsWith("kids-");
   const header = document.getElementById("site-header");
   if (!header) return;
+  const logoLight = cfg.logoLight || "images/nyravi_logo.png";
+  const logoDark = cfg.logoDark || logoLight;
+  const darkLogoFallback = cfg.logoDark ? "" : " logo-image-dark-fallback";
 
   const html = `
     <div class="container header-inner">
       <a class="logo" href="index.html" aria-label="${cfg.brand} home">
-        <img src="images/nyravi_logo.png" alt="${cfg.brand}"><span>${cfg.brandShort}</span>
+        <img class="logo-image logo-image-light" src="${logoLight}" alt="${cfg.brand}">
+        <img class="logo-image logo-image-dark${darkLogoFallback}" src="${logoDark}" alt="">
+        <span>${cfg.brandShort}</span>
       </a>
       <div class="header-actions">
         <a class="header-contact${page === "contact" ? " active" : ""}" href="contact.html">Contact</a>
@@ -50,9 +56,9 @@ function renderHeader() {
               ${dropdownItem("women-refit.html", "Refit & Alterations", page)}
             </ul>
           </li>
-          ${navLink("blouses.html", "Blouses", page)}
+          ${navLink("men.html", "Men", page)}
           <li class="has-dropdown">
-            <a href="kids.html" class="drop-toggle${page === "kids" ? " active" : ""}">Kids <span class="caret" aria-hidden="true">▾</span></a>
+            <a href="kids.html" class="drop-toggle${kidsActive ? " active" : ""}">Kids <span class="caret" aria-hidden="true">▾</span></a>
             <ul class="dropdown">
               ${dropdownItem("kids-frocks.html", "Frocks", page)}
               ${dropdownItem("kids-lehengas.html", "Lehengas", page)}
@@ -62,7 +68,6 @@ function renderHeader() {
           ${navLink("how-it-works.html", "How It Works", page)}
           ${navLink("why-us.html", "Why Us", page)}
           ${navLink("blogs.html", "Blogs", page)}
-          ${navLink("gallery.html", "Gallery", page)}
           ${navLink("contact.html", "Contact", page)}
         </ul>
         <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
@@ -80,6 +85,21 @@ function renderHeader() {
   header.innerHTML = html;
 }
 
+function socialLinksMarkup(cfg, showLabels = false) {
+  const links = [
+    ["Pinterest", cfg.pinterest, "fa-brands fa-pinterest-p"],
+    ["Instagram", cfg.instagram, "fa-brands fa-instagram"],
+    ["YouTube", cfg.youtube, "fa-brands fa-youtube"],
+    ["Gmail", `mailto:${cfg.gmail}`, "fa-solid fa-envelope"]
+  ];
+
+  return links.map(([label, value, icon]) => {
+    const href = value.startsWith("mailto:") || /^https?:\/\//i.test(value) ? value : `https://${value}`;
+    const external = !href.startsWith("mailto:") ? ' target="_blank" rel="noopener"' : "";
+    return `<a class="social-link" href="${href}" aria-label="${label}" title="${label}"${external}><i class="${icon}" aria-hidden="true"></i>${showLabels ? `<span>${label}</span>` : ""}</a>`;
+  }).join("");
+}
+
 function renderFooter() {
   const cfg = window.SITE_CONFIG;
   const footer = document.getElementById("site-footer");
@@ -93,13 +113,17 @@ function renderFooter() {
           <p>${cfg.tagline}</p>
           <p>${cfg.address}</p>
           <p><a href="tel:${cfg.phoneDisplay.replace(/\s/g, "")}">${cfg.phoneDisplay}</a></p>
+          <div class="footer-social">
+            <h4>Connect With Us</h4>
+            <div class="social-links">${socialLinksMarkup(cfg)}</div>
+          </div>
         </div>
         <div class="footer-links">
           <h4>Explore</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="women.html">Women</a></li>
-            <li><a href="blouses.html">Blouses</a></li>
+            <li><a href="men.html">Men</a></li>
             <li><a href="kids.html">Kids</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="blogs.html">Blogs</a></li>
@@ -149,5 +173,6 @@ function renderSharedComponents() {
 
 if (typeof window !== "undefined") {
   window.renderSharedComponents = renderSharedComponents;
+  window.socialLinksMarkup = socialLinksMarkup;
   window.getPageKey = getPageKey;
 }

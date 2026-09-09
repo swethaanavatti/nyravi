@@ -90,21 +90,44 @@ function whatsappUrl(text) {
 }
 
 function orderOnWhatsApp(product) {
-  const text = `${window.SITE_CONFIG.whatsappOrderPrefix}\n\nProduct: ${product.name}\nCategory: ${CATEGORY_META[product.category].title}\nTier: ${product.tier}\nStarting Price: ${product.priceLabel}`;
+  const text = `${window.SITE_CONFIG.whatsappOrderPrefix}\n\nProduct: ${product.name}\nCategory: ${CATEGORY_META[product.category].title}\nPrice: ${product.priceLabel}`;
   window.open(whatsappUrl(text), "_blank", "noopener,noreferrer");
+}
+
+function productImageMarkup(product) {
+  const images = product.images?.length ? product.images : [product.image];
+  if (images.length === 1) {
+    return `<div class="product-image"><img src="${images[0]}" alt="${product.name}" loading="lazy"></div>`;
+  }
+  return `
+    <div class="product-image product-carousel" data-carousel>
+      ${images.map((image, index) => `<img class="carousel-slide${index === 0 ? " active" : ""}" src="${image}" alt="${product.name} view ${index + 1}" loading="lazy">`).join("")}
+    </div>
+  `;
+}
+
+function priceMarkup(product) {
+  const [firstPrice, ...additionalPrices] = product.priceOptions;
+  const additionalMarkup = additionalPrices.length ? `
+    <details class="price-details">
+      <summary aria-label="View all price options"><span aria-hidden="true">i</span></summary>
+      <div class="price-popover">
+        <strong>Prices start from</strong>
+        ${product.priceOptions.map((option) => `<div><span>${option.label}</span><span>${formatPrice(option.value)}</span></div>`).join("")}
+      </div>
+    </details>
+  ` : "";
+  return `<span class="price-tier">Starts from</span><span class="price-value">${formatPrice(firstPrice.value)}</span>${additionalMarkup}`;
 }
 
 function productCard(p) {
   return `
-    <article class="product-card" data-tier="${p.tier}">
-      <div class="product-image">
-        <img src="${p.image}" alt="${p.name} ${p.tier}" loading="lazy">
-      </div>
+    <article class="product-card">
+      ${productImageMarkup(p)}
       <div class="product-info">
         <span class="product-category-label">${CATEGORY_META[p.category].title}</span>
         <h3 class="product-name">${p.name}</h3>
-        <span class="product-tier tier-${p.tier}">${p.tier}</span>
-        <div class="product-price">${p.priceLabel}</div>
+        <div class="product-price">${priceMarkup(p)}</div>
         <div class="product-actions">
           <button class="btn btn-primary order-btn" data-id="${p.id}">Order on WhatsApp</button>
         </div>
@@ -125,14 +148,22 @@ function renderProductGrid(products, container) {
   });
 }
 
-function renderSubcategories(subcategories, container, pageKey) {
-  if (!container) return;
-  container.innerHTML = subcategories.map((sub) => `
-    <a href="${sub.key}.html" class="subcategory-card">
-      <img src="${sub.image}" alt="${sub.title}" loading="lazy">
-      <span class="subcategory-title">${sub.title}</span>
-    </a>
-  `).join("");
+function mergeCategoryIntro(meta) {
+  const heroSection = document.querySelector("main > .page-hero");
+  const intro = document.querySelector(".category-intro");
+  if (!heroSection || !intro) return;
+
+  const instructionText = intro.querySelector("p:last-of-type")?.textContent;
+  const description = document.createElement("p");
+  description.className = "category-page-description";
+  description.textContent = meta.description;
+  const instruction = document.createElement("p");
+  instruction.className = "category-page-instruction";
+  instruction.textContent = instructionText || "Choose a design to continue.";
+
+  intro.replaceChildren(description, instruction);
+  heroSection.remove();
+  document.body.classList.add("category-page-no-hero");
 }
 
 function renderCategoryPage() {
@@ -152,50 +183,47 @@ function renderCategoryPage() {
     document.title = `${meta.title} | ${window.SITE_CONFIG.brand}`;
   }
 
-  const subcategoryGrid = document.getElementById("subcategory-grid");
   const productGrid = document.getElementById("product-grid");
-  const tabs = document.getElementById("tier-tabs");
-
-  if (meta.aggregate && meta.subcategories && subcategoryGrid) {
-    const subs = getSubcategories(pageKey);
-    renderSubcategories(subs, subcategoryGrid, pageKey);
-  }
+  const tabs = document.getElementById("category-tabs");
 
   if (productGrid) {
+    const allProducts = getProducts(pageKey);
     if (meta.aggregate && meta.subcategories) {
-      // Show one featured product from each subcategory
-      if (tabs) tabs.style.display = "none";
-      const featured = meta.subcategories
-        .map((key) => getProducts(key)[0])
-        .filter(Boolean);
-      if (featured.length) {
-        const intro = document.querySelector(".category-intro h2");
-        if (intro) intro.textContent = "Featured designs from each category";
-        renderProductGrid(featured, productGrid);
-      } else {
-        productGrid.innerHTML = "";
-      }
-    } else {
-      if (tabs) tabs.style.display = "flex";
-      const allProducts = getProducts(pageKey);
+      // Show all products with subcategory filters
+      const introText = document.querySelector(".category-intro p:last-of-type");
+      if (introText) introText.textContent = "Browse all products or filter by category.";
       renderProductGrid(allProducts, productGrid);
 
       if (tabs) {
-        tabs.innerHTML = `<button class="tier-tab active" data-tier="all">All</button>` +
-          window.TIERS.map((t) => `<button class="tier-tab" data-tier="${t}">${t}</button>`).join("");
+        tabs.style.display = "flex";
+        tabs.innerHTML = `<button class="category-tab active" data-category="all">All</button>` +
+          meta.subcategories.map((key) => `<button class="category-tab" data-category="${key}">${CATEGORY_META[key].title}</button>`).join("");
 
-        tabs.querySelectorAll(".tier-tab").forEach((tab) => {
+        tabs.querySelectorAll(".category-tab").forEach((tab) => {
           tab.addEventListener("click", () => {
-            tabs.querySelectorAll(".tier-tab").forEach((t) => t.classList.remove("active"));
+            tabs.querySelectorAll(".category-tab").forEach((item) => item.classList.remove("active"));
             tab.classList.add("active");
-            const tier = tab.dataset.tier;
-            const filtered = tier === "all" ? allProducts : allProducts.filter((p) => p.tier === tier);
+            const category = tab.dataset.category;
+            const filtered = category === "all" ? allProducts : allProducts.filter((product) => product.category === category);
             renderProductGrid(filtered, productGrid);
           });
         });
       }
+    } else {
+      if (tabs) tabs.style.display = "none";
+      const introText = document.querySelector(".category-intro p:last-of-type");
+      const isMenCategory = pageKey === "men";
+      const isTypeCategory = pageKey.startsWith("kids-") || isMenCategory;
+      const isServiceCategory = pageKey === "saree-petticoat-pico" || pageKey === "women-refit";
+      const itemType = isTypeCategory ? "type" : isServiceCategory ? "service" : "design";
+      if (introText) introText.textContent = isMenCategory
+        ? "Choose a type and order directly on WhatsApp. Prices are indicative stitching charges and may vary with fabric and detailing."
+        : `Choose a ${itemType} and order directly on WhatsApp.`;
+      renderProductGrid(allProducts, productGrid);
     }
   }
+
+  mergeCategoryIntro(meta);
 }
 
 function initCardCarousels() {
@@ -235,23 +263,35 @@ function initCardCarousels() {
     };
 
     start();
-    const card = carousel.closest(".carousel-card");
+    const card = carousel.closest(".carousel-card, .product-card");
     card?.addEventListener("focusin", stop);
     card?.addEventListener("focusout", start);
   });
 }
 
-function renderGallery() {
-  const grid = document.getElementById("gallery-grid");
-  if (!grid) return;
-  const images = Array.from({ length: 12 }, (_, i) =>
-    window.placeholderImage(600, 600, `Gallery ${i + 1}`, i % 2 === 0 ? "D9A6A6" : "F7F0E8", "5E2A2F")
-  );
-  grid.innerHTML = images.map((src, i) => `
-    <div class="gallery-item ${i % 3 === 0 ? 'tall' : ''}">
-      <img src="${src}" alt="Gallery image ${i + 1}" loading="lazy">
+function renderGalleryItems(grid, images) {
+  const itemClasses = ["tall", "", "tall", "", ""];
+  grid.innerHTML = images.map((image, index) => `
+    <div class="gallery-item ${itemClasses[index % itemClasses.length]}">
+      <img src="${image.src}" alt="${image.alt}" loading="lazy">
     </div>
   `).join("");
+}
+
+function renderGallery() {
+  const images = window.GALLERY_IMAGES || [];
+  const galleryGrid = document.getElementById("gallery-grid");
+  const homeGallery = document.getElementById("home-gallery");
+  if (galleryGrid) renderGalleryItems(galleryGrid, images);
+  if (!homeGallery) return;
+
+  const shuffledImages = [...images];
+  for (let index = shuffledImages.length - 1; index > 0; index--) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledImages[index], shuffledImages[randomIndex]] = [shuffledImages[randomIndex], shuffledImages[index]];
+  }
+  const imageCount = Math.min(shuffledImages.length, 4 + Math.floor(Math.random() * 2));
+  renderGalleryItems(homeGallery, shuffledImages.slice(0, imageCount));
 }
 
 function initContactForm() {
@@ -277,15 +317,16 @@ function initContactPage() {
   document.querySelectorAll(".address-text").forEach((el) => el.textContent = cfg.address);
   document.querySelectorAll(".phone-link").forEach((el) => {
     el.textContent = cfg.phoneDisplay;
-    el.href = `tel:${cfg.phoneDisplay.replace(/\s/g, "")}`;
+    el.href = `tel:+${cfg.phone}`;
   });
   document.querySelectorAll(".whatsapp-link").forEach((el) => {
-    const href = el.getAttribute("href")?.split("?")[0] || `https://wa.me/${cfg.phone}`;
-    el.href = `${href}?text=${encodeURIComponent(cfg.whatsappMessage)}`;
+    el.href = `https://wa.me/${cfg.phone}?text=${encodeURIComponent(cfg.whatsappMessage)}`;
   });
   document.querySelectorAll(".service-areas-text").forEach((el) => {
     el.textContent = cfg.serviceAreas.join(", ");
   });
+  const socialLinks = document.getElementById("contact-social-links");
+  if (socialLinks) socialLinks.innerHTML = window.socialLinksMarkup?.(cfg, true) || "";
 }
 
 function initApp() {

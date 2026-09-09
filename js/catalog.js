@@ -69,7 +69,7 @@ const CATEGORY_META = {
     title: "Refit & Alterations",
     description: "Quick and precise alterations and refits at your convenience.",
     parent: "women",
-    image: placeholderImage(800, 600, "Alterations", "F7F0E8", "5E2A2F")
+    image: "images/catalog/women-refit/alterations-refit.svg"
   },
   kids: {
     title: "Kids Ethnic Wear",
@@ -96,139 +96,227 @@ const CATEGORY_META = {
     description: "Pleated, circular and tiered skirts made for active little ones.",
     parent: "kids",
     image: placeholderImage(800, 600, "Kids Skirts", "F7F0E8", "5E2A2F")
+  },
+  men: {
+    title: "Men",
+    description: "Custom shirts, trousers and kurtas tailored for a sharp, comfortable fit.",
+    parent: null,
+    image: placeholderImage(800, 600, "Men's Tailoring", "F7F0E8", "5E2A2F")
   }
 };
 
 const BASE_DESIGNS = {
   blouses: [
-    { name: "Classic Round Neck Blouse", base: 800 },
-    { name: "Square Neck Blouse", base: 850 },
-    { name: "V-Neck Blouse", base: 800 },
-    { name: "High Neck Blouse", base: 900 },
-    { name: "Halter Neck Blouse", base: 950 },
-    { name: "Boat Neck Blouse", base: 850 },
-    { name: "Off-Shoulder Blouse", base: 1000 },
-    { name: "Full Sleeves Blouse", base: 950 },
-    { name: "Back Open / Dori Blouse", base: 1000 },
-    { name: "Front Open Shirt-Style Blouse", base: 1050 }
+    { name: "Classic Round Neck Blouse", basic: 850, styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses/round_d3.jpg",
+                "images/catalog/blouses/round_d1.jpg",
+                "images/catalog/blouses/round_d2.jpg"
+       ]
+    },
+    { name: "Square Neck Blouse", basic: 850, styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses/square_d1.jpg",
+                "images/catalog/blouses/square_d2.jpg"
+       ]
+     },
+    { name: "V-Neck Blouse", basic: 850, styled: 1700, designer: 2800,
+      images: ["images/catalog/blouses/vneck_d1.jpg"]
+     },
+    { name: "High Neck Blouse", styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses/highneck_d1.jpg",
+                "images/catalog/blouses/highneck_d2.jpg"
+       ]
+    },
+    { name: "Halter Neck Blouse", styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses/halterneck_d2.jpg",
+                "images/catalog/blouses/halterneck_d2.jpg"
+       ]
+    },
+    { name: "Boat Neck Blouse", styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses/boat_d1.jpg",
+                "images/catalog/blouses/boat_d2.jpg",
+                "images/catalog/blouses/boat_d3.jpg"
+       ]
+    },
+    {
+      name: "Sweetheart Neck Blouse",
+      styled: 1700,
+      designer: 2800,
+      images: [
+        "images/catalog/blouses/sweetheart_d1.jpg",
+        "images/catalog/blouses/sweetheart_d2.jpg"
+      ]
+    },
+    { name: "Off-Shoulder Blouse", styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses/off_shoulder_d1.jpg"
+       ]
+    },
+    { name: "Full Sleeves Blouse", styled: 1700, designer: 2300,
+      images: [ "images/catalog/blouses/fullsleeves_d1.jpg"
+       ]
+    },
+    { name: "Back Open / Dori Blouse", styled: 1700, designer: 2800,
+      images: [ "images/catalog/blouses_back_design/d2.jpg",
+                "images/catalog/blouses_back_design/d7.jpg",
+                "images/catalog/blouses_back_design/d6.jpg"
+       ]
+    },
+    { name: "Front Open Shirt-Style Blouse", designer: 3100,
+      images :[
+        "images/catalog/blouses/front_openshirt.jpg"
+      ]
+     }
   ],
   lehengas: [
-    { name: "Traditional Flared Lehenga", base: 2800 },
-    { name: "A-Line Lehenga", base: 2600 },
-    { name: "Panelled Lehenga", base: 3000 },
-    { name: "Mermaid / Fishtail Lehenga", base: 3200 },
-    { name: "Circular Lehenga", base: 2700 },
-    { name: "Jacket Style Lehenga", base: 3500 },
-    { name: "Indo-Western Lehenga", base: 3300 },
-    { name: "Embroidered Lehenga", base: 3800 }
+    { name: "Traditional Flared Lehenga", basic: 2000, styled: 3300, designer: 5500,
+      images: ["images/catalog/lehengas/traditional_lehenga.jpg"]
+    },
+    { name: "A-Line Lehenga", basic: 2000, styled: 3300, designer: 5500,
+      images: ["images/catalog/lehengas/a_line_lehenga.jpg"]
+    },
+    { name: "Panelled Lehenga", basic: 2000, styled: 3300, designer: 5500,
+      images: ["images/catalog/lehengas/panelled_lehenga.jpg"]
+    },
+    { name: "Mermaid / Fishtail Lehenga", designer: 6600,
+      images: ["images/catalog/lehengas/mermaid_lehenga.jpg"]
+    },
+    { name: "Circular Lehenga", styled: 4180, designer: 5500,
+      images: ["images/catalog/lehengas/circular_lehenga.jpg"]
+    },
+    { name: "Jacket Style Lehenga", designer: 8300,
+      images: ["images/catalog/lehengas/jacket_lehenga.jpg"]
+    },
+    { name: "Indo-Western Lehenga", designer: 5500,
+      images: ["images/catalog/lehengas/indo_western_lehenga.jpg"]
+    },
+    { name: "Embroidered Lehenga", designer: 5500,
+      images: ["images/catalog/lehengas/embroidary_lehenga.jpg"]
+    }
   ],
   kurtis: [
-    { name: "Straight Kurti", base: 1100 },
-    { name: "A-Line Kurti", base: 1200 },
-    { name: "Anarkali Style Kurti", base: 1400 },
-    { name: "High-Low Kurti", base: 1300 },
-    { name: "Front Slit Kurti", base: 1350 },
-    { name: "Shirt Style Kurti", base: 1250 },
-    { name: "Floor Length Kurti", base: 1600 }
+    { name: "Straight Kurti", basic: 1400, designer: 2000, images: ["images/catalog/kurtis/straight_kurti.jpg"] },
+    { name: "A-Line Kurti", basic: 1400, designer: 2000, images: ["images/catalog/kurtis/aline_kurti.jpg"] },
+    { name: "Anarkali Style Kurti", basic: 1400, designer: 2000, images: ["images/catalog/kurtis/anarkali_kurti.jpg"] },
+    { name: "High-Low Kurti", designer: 2800, images: ["images/catalog/kurtis/highlow_kurti.jpg"] },
+    { name: "Front Slit Kurti", basic: 1400, designer: 2300, images: ["images/catalog/kurtis/front_slit_kurti.jpg"] },
+    { name: "Shirt Style Kurti", basic: 2000, images: ["images/catalog/kurtis/shirt_style_kurti.jpg"] }
   ],
   anarkali: [
-    { name: "Floor-Length Anarkali", base: 1900 },
-    { name: "Layered Anarkali", base: 2100 },
-    { name: "Jacket Style Anarkali", base: 2300 },
-    { name: "Kalidar Anarkali", base: 2200 },
-    { name: "Pakistani Anarkali", base: 2000 },
-    { name: "Embroidered Anarkali", base: 2600 }
+    { name: "Floor-Length Anarkali", designer: 2800, images: ["images/catalog/anarkali/floor_length_anarkali.jpg"] },
+    { name: "Layered Anarkali", designer: 2800, images: ["images/catalog/anarkali/layered_anarkali.jpg"] },
+    { name: "Jacket Style Anarkali", designer: 3300, images: ["images/catalog/anarkali/jacket_anarkali.jpg"] },
+    { name: "Embroidered Anarkali", designer: 11000, images: ["images/catalog/anarkali/embroidered_anarkali.jpg"] }
   ],
   "bottom-wear": [
-    { name: "Palazzo Pants", base: 800 },
-    { name: "Straight Pants", base: 700 },
-    { name: "Salwar", base: 650 },
-    { name: "Dhoti Pants", base: 900 },
-    { name: "Churidar", base: 600 },
-    { name: "Sharara", base: 1100 },
-    { name: "Culottes", base: 850 }
+    { name: "Palazzo Pants", basic: 700, styled: 1300, images: ["images/catalog/pants/palazzo_pants.jpg"] },
+    { name: "Straight Pants", basic: 700, images: ["images/catalog/pants/straight_pants.jpg"] },
+    { name: "Salwar", basic: 700, images: ["images/catalog/pants/salwar.jpg"] },
+    { name: "Dhoti Pants", basic: 1050, images: ["images/catalog/pants/dhoti_pants.jpg"] },
+    { name: "Churidar", basic: 700, images: ["images/catalog/pants/churidar.jpg"] },
+    { name: "Sharara", basic: 1300, images: ["images/catalog/pants/sharara_pants.jpg"] },
+    { name: "Culottes", basic: 1300, images: ["images/catalog/pants/culottes.jpg"] }
   ],
   "pre-stitched-sarees": [
-    { name: "Pre-Stitched Pleated Saree", base: 1600 },
-    { name: "Pre-Stitched Dhoti Saree", base: 1800 },
-    { name: "Pre-Stitched Lehenga Saree", base: 2200 },
-    { name: "Ready-to-Wear Saree", base: 1700 }
+    { name: "Pre-Stitched Pleated Saree", basic: 1050, images: ["images/catalog/prestitched_sarees/pleated_saree.jpg"] },
+    { name: "Pre-Stitched Dhoti Saree", basic: 1700, images: ["images/catalog/prestitched_sarees/dhoti_saree.jpg"] }
   ],
+
   "saree-petticoat-pico": [
-    { name: "Saree Petticoat", base: 500 },
-    { name: "Saree Fall Attaching", base: 250 },
-    { name: "Saree Pico / Roll Polishing", base: 200 },
-    { name: "Full Saree Finishing Service", base: 700 }
+    { name: "Saree Petticoat", basic: 950, styled: 1300, images: ["images/catalog/otherwork/petticoat.jpg"] },
+    { name: "Saree Fall Attaching", basic: 250, images: ["images/catalog/otherwork/sareefall.jpg"] },
+    { name: "Saree Pico / Roll Polishing", basic: 200, images: ["images/catalog/otherwork/roll_polishing.jpeg"] },
+    { name: "Full Saree Finishing Service", basic: 300, images: ["images/catalog/otherwork/full_saree_finishing.jpg"] }
   ],
   "women-gown": [
-    { name: "Evening Gown", base: 2400 },
-    { name: "Party Dress", base: 2200 },
-    { name: "Ankle-Length Gown", base: 2600 },
-    { name: "Indo-Western Gown", base: 2800 }
+    { name: "Evening Gown", basic: 2800, styled: 3800, images: ["images/catalog/gown/evening_gown.jpg"] },
+    { name: "Party Dress", styled: 5500, images: ["images/catalog/gown/party_dress.jpg"] },
+    { name: "Ankle-Length Gown", styled: 3800, images: ["images/catalog/gown/ankle_length_gown.jpg"] },
+    { name: "Indo-Western Gown", styled: 5500, images: ["images/catalog/gown/indo_western_gown.jpg"] }
   ],
+
   "women-refit": [
-    { name: "Waist Adjustment", base: 250 },
-    { name: "Length Adjustment", base: 200 },
-    { name: "Sleeve Adjustment", base: 200 },
-    { name: "Side Seam Adjustment", base: 250 },
-    { name: "Overall Refitting", base: 500 },
-    { name: "Zipper Replacement", base: 150 }
+    { name: "Waist Adjustment", basic: 150, images: ["images/catalog/women-refit/alterations-refit.svg"] },
+    { name: "Length Adjustment", basic: 200, images: ["images/catalog/women-refit/alterations-refit.svg"] },
+    { name: "Sleeve Adjustment", basic: 200, images: ["images/catalog/women-refit/alterations-refit.svg"] },
+    { name: "Side Seam Adjustment", basic: 200, images: ["images/catalog/women-refit/alterations-refit.svg"] },
+    { name: "Overall Refitting", basic: 400, images: ["images/catalog/women-refit/alterations-refit.svg"] },
+    { name: "Zipper Replacement", basic: 200, images: ["images/catalog/women-refit/alterations-refit.svg"] }
   ],
+
   "kids-frocks": [
-    { name: "A-Line Frock", base: 700 },
-    { name: "Party Frock", base: 900 },
-    { name: "Floral Frock", base: 750 },
-    { name: "Tiered Frock", base: 850 },
-    { name: "Anarkali Frock", base: 950 },
-    { name: "High-Low Frock", base: 800 }
+    { name: "A-Line Frock", basic: 900, designer: 2000, images: ["images/catalog/kids_frocks/a_line_frock.jpeg"] },
+    { name: "Party Frock", designer: 2300, images: ["images/catalog/kids_frocks/party_frock.jpeg"] },
+    { name: "Floral Frock", designer: 1700, images: ["images/catalog/kids_frocks/floral_frock.jpeg"] },
+    { name: "Tiered Frock", designer: 2000, images: ["images/catalog/kids_frocks/tiered_frock.jpeg"] },
+    { name: "Anarkali Frock", designer: 2000, images: ["images/catalog/kids_frocks/anarkali_frock.jpeg"] },
+    { name: "High-Low Frock", designer: 1400, images: ["images/catalog/kids_frocks/high_low_frock.jpeg"] }
   ],
+
   "kids-lehengas": [
-    { name: "Traditional Lehenga", base: 1300 },
-    { name: "Crop Top Lehenga", base: 1200 },
-    { name: "Jacket Lehenga", base: 1500 },
-    { name: "Floral Lehenga", base: 1250 },
-    { name: "Cape Lehenga", base: 1400 }
+    { name: "Traditional Lehenga", designer: 1700, images: ["images/catalog/kids_lehengas/traditional_lehenga.jpeg"] },
+    { name: "Crop Top Lehenga", designer: 1700, images: ["images/catalog/kids_lehengas/crop_top_lehenga.jpeg"] },
+    { name: "Jacket Lehenga", designer: 2000, images: ["images/catalog/kids_lehengas/jacket_lehenga.jpeg"] },
+    { name: "Floral Lehenga", designer: 2300, images: ["images/catalog/kids_lehengas/floral_lehenga.jpeg"] },
+    { name: "Cape Lehenga", designer: 2800, images: ["images/catalog/kids_lehengas/cape_lehenga.jpeg"] }
   ],
+
   "kids-skirts": [
-    { name: "Pleated Skirt", base: 600 },
-    { name: "Circular Skirt", base: 650 },
-    { name: "A-Line Skirt", base: 600 },
-    { name: "Tiered Skirt", base: 700 },
-    { name: "Printed Skirt", base: 650 }
+    { name: "A-Line Skirt", designer: 2000, images: ["images/catalog/kids_skirt/a_line_skirt.jpeg"] },
+    { name: "Circular Skirt", designer: 2000, images: ["images/catalog/kids_skirt/circular_skirt.jpeg"] },
+    { name: "Pleated Skirt", designer: 2000, images: ["images/catalog/kids_skirt/pleated_skirt.jpeg"] },
+    { name: "Tiered Skirt", designer: 2800, images: ["images/catalog/kids_skirt/tiered_skirt.jpeg"] }
+  ],
+  men: [
+    { name: "Straight Cut Kurta", basic: 3800, designer: 5500, images: ["images/catalog/men/straight_cut_kurta.jpeg"] },
+    { name: "A-Line Kurta", basic: 3800, designer: 5500, images: ["images/catalog/men/a_line_kurta.jpeg"] },
+    { name: "Pathani Kurta", basic: 3800, designer: 5500, images: ["images/catalog/men/pathani_kurta.jpeg"] },
+    { name: "Mandarin Collar Kurta", basic: 3800, designer: 5500, images: ["images/catalog/men/mandarin_collar_kurta.jpeg"] },
+    { name: "Festive Kurta", designer: 5500, images: ["images/catalog/men/festive_kurta.jpeg"] },
+    { name: "Short Kurta", basic: 3800, designer: 5500, images: ["images/catalog/men/short_kurta.jpeg"] },
+    { name: "Kurta Dhoti Set", basic: 4400, designer: 5500, images: ["images/catalog/men/kurta_dhoti_set.jpeg"] }
   ]
 };
 
-const TIERS = ["Basic", "Stylized", "Designer"];
+const GALLERY_IMAGES = Array.from(new Map(
+  Object.values(BASE_DESIGNS)
+    .flatMap((designs) => designs.flatMap((design) =>
+      (design.images || []).map((src) => [src, { src, alt: design.name }])
+    ))
+    .filter(([src]) => src.startsWith("images/catalog/"))
+).values());
 
-function tierPrice(base, tier) {
-  let multiplier = 1;
-  if (tier === "Stylized") multiplier = 1.5;
-  if (tier === "Designer") multiplier = 2.5;
-  return Math.round((base * multiplier) / 10) * 10;
+function solidColorPlaceholder(color) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><rect width="800" height="1000" fill="#${color}"/></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-function getProductImage(category, designName, width, height) {
-  return "images/hero-placeholder.svg";
+function getDesignImages(design, index) {
+  if (Array.isArray(design.images) && design.images.length) return design.images;
+  if (design.image) return [design.image];
+  const colors = ["F7F0E8", "D9A6A6", "C9A24B", "E9D7C3"];
+  return [solidColorPlaceholder(colors[index % colors.length])];
 }
 
 function expandDesigns(categoryKey) {
-  const designs = BASE_DESIGNS[categoryKey] || [];
-  const products = [];
-  designs.forEach((design, idx) => {
-    TIERS.forEach((tier) => {
-      const price = tierPrice(design.base, tier);
-      products.push({
-        id: `${categoryKey}-${idx}-${tier.toLowerCase()}`,
-        category: categoryKey,
-        name: `${design.name}`,
-        tier: tier,
-        price: price,
-        priceLabel: `From ${formatPrice(price)}`,
-        image: getProductImage(categoryKey, design.name)
-      });
-    });
+  return (BASE_DESIGNS[categoryKey] || []).map((design, index) => {
+    const images = getDesignImages(design, index);
+    const priceOptions = [
+      { label: "Basic", value: design.basic },
+      { label: "Styled", value: design.styled },
+      { label: "Designer", value: design.designer }
+    ].filter((option) => option.value != null);
+    const firstPrice = priceOptions[0];
+    return {
+      id: `${categoryKey}-${index}`,
+      category: categoryKey,
+      name: design.name,
+      price: firstPrice.value,
+      priceTier: firstPrice.label,
+      priceOptions,
+      priceLabel: priceOptions.map((option) => `${option.label}: ${formatPrice(option.value)}`).join(", "),
+      images: images,
+      image: images[0]
+    };
   });
-  return products;
 }
 
 function getProducts(pageKey) {
@@ -244,20 +332,11 @@ function getProducts(pageKey) {
   return expandDesigns(pageKey);
 }
 
-function getSubcategories(pageKey) {
-  const meta = CATEGORY_META[pageKey];
-  if (!meta || !meta.subcategories) return [];
-  return meta.subcategories.map((key) => ({
-    key,
-    ...CATEGORY_META[key]
-  }));
-}
-
 if (typeof window !== "undefined") {
   window.CATEGORY_META = CATEGORY_META;
   window.BASE_DESIGNS = BASE_DESIGNS;
+  window.GALLERY_IMAGES = GALLERY_IMAGES;
   window.getProducts = getProducts;
-  window.getSubcategories = getSubcategories;
-  window.TIERS = TIERS;
+  window.getDesignImages = getDesignImages;
   window.placeholderImage = placeholderImage;
 }

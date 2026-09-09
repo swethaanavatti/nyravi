@@ -14,13 +14,17 @@
 
   <main>
     <section class="hero">
-      <div class="hero-bg" style="background-image:url('images/landing_img.jpeg')"></div>
+      <div class="hero-bg">
+        <video autoplay muted loop playsinline poster="images/landing_img.jpeg" aria-hidden="true">
+          <source src="images/landing_vid.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="hero-content">
-        <h1>Nyravi Boutique</h1>
+        <h1>Nyravi Design Studio</h1>
         <p>Custom ethnic wear, blouses, lehengas, kurtis, anarkalis and kids outfits — stitched with care and delivered to your doorstep in Bengaluru.</p>
         <div class="hero-actions">
           <a href="women.html" class="btn btn-primary">Explore Collections</a>
-          <a href="https://wa.me/919739464650" class="btn btn-secondary dynamic-whatsapp" target="_blank" rel="noopener">Order on WhatsApp</a>
+          <a href="#" class="btn btn-secondary dynamic-whatsapp" target="_blank" rel="noopener">Order on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -32,37 +36,46 @@
         <div class="cards-grid category-carousel-grid">
           <a href="blouses.html" class="card-link carousel-card">
             <span class="card-carousel" data-carousel>
-              <img class="carousel-slide active" src="images/catalog/blouses_back_design/d1.jpg" alt="Blouse design option 1">
-              <img class="carousel-slide" src="images/catalog/blouses_back_design/d2.jpg" alt="Blouse design option 2" loading="lazy">
-              <img class="carousel-slide" src="images/catalog/blouses_back_design/d3.jpg" alt="Blouse design option 3" loading="lazy">
-              <img class="carousel-slide" src="images/catalog/blouses_back_design/d4.jpg" alt="Blouse design option 4" loading="lazy">
+              <img class="carousel-slide active" src="images/catalog/blouses/off_shoulder_d1.jpg" alt="Off shoulder blouse design">
+              <img class="carousel-slide" src="images/catalog/blouses/highneck_d2.jpg" alt="High neck blouse design" loading="lazy">
+              <img class="carousel-slide" src="images/catalog/blouses/round_d3.jpg" alt="Round neck blouse design" loading="lazy">
             </span>
             <span class="card-overlay">
               <span>Blouses</span>
-              <span class="card-sublabel">Basic | Stylized | Designer</span>
+              <span class="card-sublabel">Classic | Contemporary | Occasion</span>
             </span>
           </a>
-          <a href="women.html" class="card-link carousel-card">
+          <a href="lehengas.html" class="card-link carousel-card">
             <span class="card-carousel" data-carousel>
-              <img class="carousel-slide active" src="images/catalog/women/anarkali.jpg" alt="Women's ethnic wear placeholder 1">
-              <img class="carousel-slide" src="images/catalog/women/l1.jpg" alt="Women's ethnic wear placeholder 2" loading="lazy">
-              <img class="carousel-slide" src="images/catalog/women/kurti.jpg" alt="Women's ethnic wear placeholder 3" loading="lazy">
-              <img class="carousel-slide" src="images/catalog/women/l2.jpg" alt="Women's ethnic wear placeholder 4" loading="lazy">
+              <img class="carousel-slide active" src="images/catalog/lehengas/a_line_lehenga.jpg" alt="A-line lehenga design">
+              <img class="carousel-slide" src="images/catalog/lehengas/circular_lehenga.jpg" alt="Circular lehenga design" loading="lazy">
+              <img class="carousel-slide" src="images/catalog/lehengas/indo_western_lehenga.jpg" alt="Indo-western lehenga design" loading="lazy">
             </span>
             <span class="card-overlay">
-              <span>Women</span>
-              <span class="card-sublabel">Lehenga | Kurti &amp; More</span>
+              <span>Lehengas</span>
+              <span class="card-sublabel">Traditional | Contemporary | Indo-Western</span>
             </span>
           </a>
-          <a href="kids.html" class="card-link carousel-card">
+          <a href="kurtis.html" class="card-link carousel-card">
             <span class="card-carousel" data-carousel>
-              <img class="carousel-slide active" src="images/catalog/kids/k1.jpg" alt="Kids ethnic wear placeholder 1">
-              <img class="carousel-slide" src="images/catalog/kids/k2.jpg" alt="Kids ethnic wear placeholder 2" loading="lazy">
-              <img class="carousel-slide" src="images/catalog/kids/k3.jpg" alt="Kids ethnic wear placeholder 3" loading="lazy">
+              <img class="carousel-slide active" src="images/catalog/kurtis/aline_kurti.jpg" alt="A-line kurti design">
+              <img class="carousel-slide" src="images/catalog/kurtis/straight_kurti.jpg" alt="Straight kurti design" loading="lazy">
+              <img class="carousel-slide" src="images/catalog/kurtis/shirt_style_kurti.jpg" alt="Shirt-style kurti design" loading="lazy">
             </span>
             <span class="card-overlay">
-              <span>Kids</span>
-              <span class="card-sublabel">Frocks | Langa Davani &amp; More</span>
+              <span>Kurtis</span>
+              <span class="card-sublabel">A-Line | Straight | Shirt Style</span>
+            </span>
+          </a>
+          <a href="anarkali.html" class="card-link carousel-card">
+            <span class="card-carousel" data-carousel>
+              <img class="carousel-slide active" src="images/catalog/anarkali/embroidered_anarkali.jpg" alt="Embroidered anarkali design">
+              <img class="carousel-slide" src="images/catalog/anarkali/floor_length_anarkali.jpg" alt="Floor-length anarkali design" loading="lazy">
+              <img class="carousel-slide" src="images/catalog/anarkali/jacket_anarkali.jpg" alt="Jacket anarkali design" loading="lazy">
+            </span>
+            <span class="card-overlay">
+              <span>Anarkali</span>
+              <span class="card-sublabel">Embroidered | Floor Length | Jacket</span>
             </span>
           </a>
         </div>
@@ -82,7 +95,7 @@
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div>
             <h3>Confirm Order</h3>
-            <p>Pick your design, fabric, and tier. We confirm measurements and pricing.</p>
+            <p>Pick your design and fabric. We confirm measurements and pricing.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
@@ -129,12 +142,7 @@
       <div class="container">
         <h2 class="section-title">From the Gallery</h2>
         <p class="section-subtitle">A glimpse of our custom work.</p>
-        <div class="gallery-grid" id="home-gallery">
-          <div class="gallery-item tall"><img src="https://placehold.co/600x800/D9A6A6/5E2A2F?text=Gallery+1" alt="Gallery 1"></div>
-          <div class="gallery-item"><img src="https://placehold.co/600x600/F7F0E8/5E2A2F?text=Gallery+2" alt="Gallery 2"></div>
-          <div class="gallery-item wide"><img src="https://placehold.co/800x600/C9A24B/5E2A2F?text=Gallery+3" alt="Gallery 3"></div>
-          <div class="gallery-item"><img src="https://placehold.co/600x600/F7F0E8/5E2A2F?text=Gallery+4" alt="Gallery 4"></div>
-        </div>
+        <div class="gallery-grid" id="home-gallery"></div>
         <p style="text-align:center;margin-top:2rem;"><a href="gallery.html" class="btn btn-primary">View Full Gallery</a></p>
       </div>
     </section>
