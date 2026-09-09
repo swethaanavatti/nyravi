@@ -12,12 +12,18 @@ const CATEGORY_META = {
   blouses: {
     title: "Blouses",
     description: "Elegant, everyday and occasion-ready blouses stitched to your measurements.",
+    seoTitle: "Custom Blouse Stitching in Bengaluru | Nyravi",
+    seoDescription: "Explore custom blouse stitching in Bengaluru, from round, square and boat necks to high-neck, halter, dori and designer blouse styles made to measure.",
+    seoImage: "images/catalog/blouses/round_d3.jpg",
     parent: null,
     image: placeholderImage(800, 600, "Blouses", "D9A6A6", "5E2A2F")
   },
   women: {
     title: "Women's Ethnic Wear",
     description: "A curated collection of blouses, lehengas, kurtis, anarkalis, saree services and more — stitched for you.",
+    seoTitle: "Women's Indian Ethnic Wear Bengaluru | Nyravi",
+    seoDescription: "Discover custom women's Indian ethnic wear in Bengaluru, including blouses, lehengas, kurtis, Anarkali suits, pre-stitched sarees, gowns and alterations.",
+    seoImage: "images/catalog/women/anarkali.jpg",
     parent: null,
     aggregate: true,
     subcategories: ["blouses", "lehengas", "kurtis", "anarkali", "bottom-wear", "pre-stitched-sarees", "saree-petticoat-pico", "women-gown", "women-refit"],
@@ -26,54 +32,81 @@ const CATEGORY_META = {
   lehengas: {
     title: "Lehengas",
     description: "Twirl-ready lehenga sets crafted for weddings, festivals and celebrations.",
+    seoTitle: "Bridal & Festive Lehenga Stitching | Nyravi",
+    seoDescription: "Choose custom lehenga stitching for weddings and festivals in Bengaluru, with traditional flared, A-line, panelled, mermaid, jacket and Indo-western designs.",
+    seoImage: "images/catalog/lehengas/traditional_lehenga.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Lehengas", "D9A6A6", "5E2A2F")
   },
   kurtis: {
     title: "Kurtis",
     description: "Comfortable and chic kurtis for work, casual outings and festive wear.",
+    seoTitle: "Custom Kurti Stitching in Bengaluru | Nyravi",
+    seoDescription: "Shop custom-stitched kurtis in Bengaluru, including straight, A-line, Anarkali, high-low, front-slit and shirt-style designs for daily and festive wear.",
+    seoImage: "images/catalog/kurtis/aline_kurti.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Kurtis", "F7F0E8", "5E2A2F")
   },
   anarkali: {
     title: "Anarkali",
     description: "Flowing anarkali suits with graceful silhouettes for every occasion.",
+    seoTitle: "Custom Anarkali Suit Stitching | Nyravi",
+    seoDescription: "Explore custom Anarkali suit stitching in Bengaluru with floor-length, layered, jacket-style and embroidered designs tailored for festive and special occasions.",
+    seoImage: "images/catalog/anarkali/embroidered_anarkali.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Anarkali", "F7F0E8", "5E2A2F")
   },
   "bottom-wear": {
     title: "Bottom Wear",
     description: "Palazzos, salwars, churidars and more, tailored for the perfect fit.",
+    seoTitle: "Ethnic Bottom Wear Stitching | Nyravi",
+    seoDescription: "Get women's ethnic bottom wear tailored in Bengaluru, including palazzo pants, salwars, churidars, dhoti pants, shararas, straight pants and culottes.",
+    seoImage: "images/catalog/pants/palazzo_pants.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Bottom Wear", "F7F0E8", "5E2A2F")
   },
   "pre-stitched-sarees": {
     title: "Pre-Stitched Sarees",
     description: "Ready-to-drape sarees that save time without compromising elegance.",
+    seoTitle: "Pre-Stitched Sarees in Bengaluru | Nyravi",
+    seoDescription: "Discover ready-to-wear pre-stitched sarees in Bengaluru, including elegant pleated and dhoti saree drapes custom-fitted for effortless festive dressing.",
+    seoImage: "images/catalog/prestitched_sarees/pleated_saree.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Pre-Stitched Sarees", "F7F0E8", "5E2A2F")
   },
   "saree-petticoat-pico": {
     title: "Saree Petticoat, Fall & Pico",
     description: "Petticoats, saree fall attaching and pico/roll polishing for a neat finish.",
+    seoTitle: "Saree Fall, Pico & Petticoat Stitching | Nyravi",
+    seoDescription: "Book saree petticoat stitching, fall attaching, pico or roll polishing and complete saree finishing services from Nyravi in Bengaluru.",
+    seoImage: "images/catalog/otherwork/full_saree_finishing.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Saree Services", "F7F0E8", "5E2A2F")
   },
   "women-gown": {
     title: "Women Dress & Gown Design",
     description: "Evening gowns, party dresses and Indo-western silhouettes designed to flatter.",
+    seoTitle: "Women's Dresses & Gowns Bengaluru | Nyravi",
+    seoDescription: "Explore custom women's dresses and gowns in Bengaluru, from evening and party gowns to ankle-length and Indo-western designs stitched to flatter your fit.",
+    seoImage: "images/catalog/gown/indo_western_gown.jpg",
     parent: "women",
     image: placeholderImage(800, 600, "Gowns", "F7F0E8", "5E2A2F")
   },
   "women-refit": {
     title: "Refit & Alterations",
     description: "Quick and precise alterations and refits at your convenience.",
+    seoTitle: "Women's Dress Alterations Bengaluru | Nyravi",
+    seoDescription: "Get women's dress alterations and refitting in Bengaluru, including waist, length, sleeve and side-seam adjustments, overall refits and zipper replacement.",
+    seoImage: "images/other/then_and_there.jpg",
     parent: "women",
     image: "images/catalog/women-refit/alterations-refit.svg"
   },
   kids: {
     title: "Kids Ethnic Wear",
     description: "Adorable ethnic wear for little ones — frocks, lehengas and skirts.",
+    seoTitle: "Kids Ethnic Wear in Bengaluru | Nyravi",
+    seoDescription: "Explore custom kids ethnic wear in Bengaluru, including A-line and party frocks, traditional and crop-top lehengas, and circular, pleated and tiered skirts.",
+    seoImage: "images/catalog/kids_lehengas/crop_top_lehenga.jpeg",
     parent: null,
     aggregate: true,
     subcategories: ["kids-frocks", "kids-lehengas", "kids-skirts"],
@@ -82,24 +115,36 @@ const CATEGORY_META = {
   "kids-frocks": {
     title: "Kids Frocks",
     description: "Comfortable and pretty frocks for everyday sparkle and special occasions.",
+    seoTitle: "Kids Frock Stitching in Bengaluru | Nyravi",
+    seoDescription: "Choose custom kids frock stitching in Bengaluru with A-line, party, floral, tiered, Anarkali and high-low styles for celebrations and everyday wear.",
+    seoImage: "images/catalog/kids_frocks/party_frock.jpeg",
     parent: "kids",
     image: placeholderImage(800, 600, "Kids Frocks", "F7F0E8", "5E2A2F")
   },
   "kids-lehengas": {
     title: "Kids Lehengas",
     description: "Mini lehengas for festivals, weddings and celebrations.",
+    seoTitle: "Kids Lehenga Stitching in Bengaluru | Nyravi",
+    seoDescription: "Explore custom kids lehengas in Bengaluru, including traditional, crop-top, jacket, floral and cape styles stitched for weddings, festivals and celebrations.",
+    seoImage: "images/catalog/kids_lehengas/traditional_lehenga.jpeg",
     parent: "kids",
     image: placeholderImage(800, 600, "Kids Lehengas", "F7F0E8", "5E2A2F")
   },
   "kids-skirts": {
     title: "Kids Skirts",
     description: "Pleated, circular and tiered skirts made for active little ones.",
+    seoTitle: "Kids Skirt Stitching in Bengaluru | Nyravi",
+    seoDescription: "Find custom kids skirt stitching in Bengaluru with comfortable A-line, circular, pleated and tiered designs made for festive occasions and active little ones.",
+    seoImage: "images/catalog/kids_skirt/pleated_skirt.jpeg",
     parent: "kids",
     image: placeholderImage(800, 600, "Kids Skirts", "F7F0E8", "5E2A2F")
   },
   men: {
-    title: "Men",
+    title: "Men's Tailoring",
     description: "Custom shirts, trousers and kurtas tailored for a sharp, comfortable fit.",
+    seoTitle: "Men's Kurta Stitching in Bengaluru | Nyravi",
+    seoDescription: "Explore men's custom kurta stitching in Bengaluru, including straight-cut, A-line, Pathani, Mandarin collar, festive, short kurta and kurta-dhoti styles.",
+    seoImage: "images/catalog/men/festive_kurta.jpeg",
     parent: null,
     image: placeholderImage(800, 600, "Men's Tailoring", "F7F0E8", "5E2A2F")
   }

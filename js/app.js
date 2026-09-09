@@ -178,10 +178,7 @@ function renderCategoryPage() {
 
   if (titleEl) titleEl.textContent = meta.title;
   if (descEl) descEl.textContent = meta.description;
-  if (hero) {
-    hero.style.backgroundImage = `url('${meta.image}')`;
-    document.title = `${meta.title} | ${window.SITE_CONFIG.brand}`;
-  }
+  if (hero) hero.style.backgroundImage = `url('${meta.image}')`;
 
   const productGrid = document.getElementById("product-grid");
   const tabs = document.getElementById("category-tabs");

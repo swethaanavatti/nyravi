@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """One-time generator that stamps category page shells from a template."""
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -63,17 +64,5 @@ def parse_meta_js(path):
     return json.loads(obj_text)
 
 if __name__ == "__main__":
-    meta = parse_meta_js(CATALOG)
-    generated = []
-    for key, info in meta.items():
-        image = "images/nyravi_logo.png"  # will be replaced by JS; keep fallback
-        page = TEMPLATE.format(
-            key=key,
-            title=info.get("title", key),
-            description=info.get("description", ""),
-            image=image,
-        )
-        out = ROOT / f"{key}.html"
-        out.write_text(page)
-        generated.append(out.name)
-    print("Generated:", generated)
+    # will be replaced by JS; keep fallback
+    subprocess.run(["node", str(ROOT / "tools" / "generate-category-pages.js")], check=True)

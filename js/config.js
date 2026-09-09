@@ -4,6 +4,8 @@ const SITE_CONFIG = {
   logoLight: "images/nyravi_logo.png",
   logoDark: "",
   tagline: "Custom Ethnic Wear & Tailoring in Bengaluru",
+  siteUrl: "https://nyravi.in",
+  defaultSocialImage: "images/landing_img.jpeg",
   phone: "919945537001",
   phoneDisplay: "+91 99455 37001",
   address: "Nyravi Design Studio, Begur, Bengaluru 560068",
