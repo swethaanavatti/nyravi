@@ -326,6 +326,20 @@ function initContactPage() {
   if (socialLinks) socialLinks.innerHTML = window.socialLinksMarkup?.(cfg, true) || "";
 }
 
+function initHeroVideo() {
+  const video = document.querySelector(".hero-bg video[data-desktop-src]");
+  if (!video) return;
+
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const hasFastConnection = connection?.effectiveType === "4g" && !connection.saveData;
+  video.src = isMobile
+    ? hasFastConnection ? video.dataset.mobileSrc : video.dataset.lowSrc
+    : video.dataset.desktopSrc;
+  video.load();
+  video.play().catch(() => {});
+}
+
 function initApp() {
   initTheme();
   window.renderSharedComponents?.();
@@ -333,6 +347,7 @@ function initApp() {
   initThemeToggle();
   initNavigation();
   initHeaderScroll();
+  initHeroVideo();
   setYear();
   renderCategoryPage();
   renderGallery();
