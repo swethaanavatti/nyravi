@@ -324,9 +324,10 @@ const BASE_DESIGNS = {
 const GALLERY_IMAGES = Array.from(new Map(
   Object.values(BASE_DESIGNS)
     .flatMap((designs) => designs.flatMap((design) =>
-      (design.images || []).map((src) => [src, { src, alt: design.name }])
+      (design.images || [])
+        .filter((src) => src.startsWith("images/catalog/") && !src.includes("women-refit/") && !src.endsWith(".svg"))
+        .map((src) => [src, { src, alt: design.name }])
     ))
-    .filter(([src]) => src.startsWith("images/catalog/"))
 ).values());
 
 function solidColorPlaceholder(color) {
