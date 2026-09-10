@@ -330,7 +330,7 @@ const GALLERY_IMAGES = Array.from(new Map(
 ).values());
 
 function solidColorPlaceholder(color) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><rect width="800" height="1000" fill="#${color}"/></svg>`;
+  const svg = `<svg xmlns="https://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><rect width="800" height="1000" fill="#${color}"/></svg>`;
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
