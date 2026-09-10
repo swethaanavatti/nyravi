@@ -1033,16 +1033,27 @@ body[data-page="gallery"] .section {
 /* Contact */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 2rem;
   align-items: start;
 }
 
 .contact-card {
+  grid-column: span 6;
   background: var(--card-bg);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: 0 4px 14px var(--shadow);
+}
+
+@media (max-width: 767px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    grid-column: 1 / -1;
+  }
 }
 
 .contact-form label {
